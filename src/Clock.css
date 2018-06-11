@@ -1,0 +1,22 @@
+.clock {
+    position: absolute;
+    top: 1px;
+    padding: 10px;
+    background: #eee;
+    border: 1px solid #999;
+    left: 1px
+}
+
+.clock input {
+    display: inline-block;
+    margin-left: 2px;
+    margin-right: 2px;
+    text-align: center;
+    width: 70px;
+}
+
+.clock button {
+    display: inline-block;
+    font-size: 10px;
+    margin-left: 10px;
+}

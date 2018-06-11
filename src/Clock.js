@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './Clock.css';
 
 
 class Clock extends React.Component {
@@ -9,25 +9,22 @@ class Clock extends React.Component {
             hours: 12,
             minutes: 11,
             speed: 2.4,
-            text: "bla",
-        }
+        };
 
         this.props.store.subscribe(() => {
             this.setState({
                 text: this.props.store.getState().text
-        });
+            });
         });
     }
 
     updateTimer = () => {
         this.props.store.dispatch({type: 'UPDATE_TIMER', ...this.state});
-    }
+    };
 
     onChange = (event) => {
         this.setState({[event.target.name]: event.target.value});
-    }
-
-
+    };
 
     render() {
         return (
@@ -50,7 +47,7 @@ class Clock extends React.Component {
 
 const InputWithLabel = ({label, name, initialValue, onChangeHandler}) =>
     <span>
-        <label htmlFor={name}> Hours: </label>
+        <label htmlFor={name}> {label} </label>
         <input type="number" name={name} defaultValue={initialValue} onChange={onChangeHandler}/>
     </span>
 

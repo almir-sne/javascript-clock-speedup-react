@@ -1,14 +1,12 @@
 export default function timer(state = {}, action) {
     switch (action.type) {
         case 'DECREMENT':
-            let newTime = state.time - 1;
+            let newTime = Math.max(state.time - state.speed);
             let days = Math.floor(newTime / (60 * 60 * 24));
             let hours = Math.floor((newTime % (60 * 60 * 24)) / (60 * 60));
-            let minutes = Math.floor((newTime % (60 * 60)) / (60));
-            let seconds = newTime % 60;
+            let minutes = Math.floor((newTime % (60 * 60)) / 60);
+            let seconds = Math.floor(newTime % 60);
 
-            console.log(newTime)
-            console.log(days + "d " + hours + "h " + minutes + "m " + seconds + "s ")
             return {
                 ...state,
                 time: newTime,
@@ -16,9 +14,8 @@ export default function timer(state = {}, action) {
             };
         case 'UPDATE_TIMER' :
             let time = Number(action.hours) * 3600 + Number(action.minutes) * 60;
-            console.log(action)
             return {
-                speed: action.speed,
+                speed: Number(action.speed),
                 time: time
             };
         default:

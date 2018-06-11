@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Clock from './App';
+import Clock from './Clock';
 import registerServiceWorker from './registerServiceWorker';
 import timer from './reducers'
 import {createStore, applyMiddleware} from 'redux'
