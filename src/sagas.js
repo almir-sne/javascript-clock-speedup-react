@@ -4,7 +4,6 @@ import {put, take, all, call, select, fork, cancel} from 'redux-saga/effects'
 export function* updateClock() {
     const getTime = state => state.time;
     let time = yield select(getTime);
-
     while (time > 0) {
         yield put({type: 'DECREMENT'});
         yield call(delay, 1000);

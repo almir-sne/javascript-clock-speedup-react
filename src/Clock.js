@@ -1,6 +1,6 @@
 import React from 'react';
 import './Clock.css';
-
+import {connect} from 'react-redux'
 
 class Clock extends React.Component {
     constructor(props) {
@@ -10,17 +10,7 @@ class Clock extends React.Component {
             minutes: 11,
             speed: 2.4,
         };
-
-        this.props.store.subscribe(() => {
-            this.setState({
-                text: this.props.store.getState().text
-            });
-        });
     }
-
-    updateTimer = () => {
-        this.props.store.dispatch({type: 'UPDATE_TIMER', ...this.state});
-    };
 
     onChange = (event) => {
         this.setState({[event.target.name]: event.target.value});
@@ -36,9 +26,9 @@ class Clock extends React.Component {
                 <InputWithLabel label="Speed:" name="speed" initialValue={this.state.speed}
                                 onChangeHandler={this.onChange}/>
 
-                <button onClick={this.updateTimer}> Reset</button>
+                <button onClick={() => this.props.updateTimer(this.state)}> Reset </button>
                 <div className="now">
-                    {this.state.text}
+                    {this.props.text}
                 </div>
             </div>
         )
@@ -51,4 +41,19 @@ const InputWithLabel = ({label, name, initialValue, onChangeHandler}) =>
         <input type="number" name={name} defaultValue={initialValue} onChange={onChangeHandler}/>
     </span>
 
-export default Clock;
+const mapStateToProps = state => {
+    return {
+        text : state.text
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        updateTimer : (state) => dispatch({type: 'UPDATE_TIMER', ...state})
+    }
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Clock)
