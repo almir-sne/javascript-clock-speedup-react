@@ -49,7 +49,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateTimer : (state) => dispatch({type: 'UPDATE_TIMER', ...state})
+        updateTimer : (state) => dispatch({type: 'SET_TIMER', ...state})
     }
 };
 
